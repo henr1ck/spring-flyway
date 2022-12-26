@@ -1,0 +1,11 @@
+create table organization (id bigint not null auto_increment, name varchar(255), primary key (id)) engine=InnoDB;
+create table player (id bigint not null auto_increment, birth_date date, last_update datetime(6), name varchar(255), position varchar(255), statistics_id bigint, team_id bigint, primary key (id)) engine=InnoDB;
+create table statistics (id bigint not null auto_increment, assists integer, goals integer, matches integer, primary key (id)) engine=InnoDB;
+create table team (id bigint not null auto_increment, name varchar(255), primary key (id)) engine=InnoDB;
+create table team_tournament (team_id bigint not null, tournament_id bigint not null) engine=InnoDB;
+create table tournament (id bigint not null auto_increment, name varchar(255), organization_id bigint, primary key (id)) engine=InnoDB;
+alter table player add constraint FKla8kg2024c2ip63egvy1l11ax foreign key (statistics_id) references statistics (id);
+alter table player add constraint FKdvd6ljes11r44igawmpm1mc5s foreign key (team_id) references team (id);
+alter table team_tournament add constraint FKjd8edinhhh7bjj9mxiqpdxj8o foreign key (tournament_id) references tournament (id);
+alter table team_tournament add constraint FKs9f3ja8pplq1gy9nllu38k9tc foreign key (team_id) references team (id);
+alter table tournament add constraint FKf5vrm9fbkoami7p25xcwyf5by foreign key (organization_id) references organization (id);

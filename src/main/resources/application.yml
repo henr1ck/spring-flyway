@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+    hikari:
+      maximum-pool-size: 12
+      minimum-idle: 4
+      max-lifetime: 30000
+
+  flyway:
+    connect-retries: 2
+    connect-retries-interval: 30s
+    locations: [classpath:db/migration]
+
+  jpa:
+    database: mysql
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+  profiles:
+    active: prod
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
